@@ -1,7 +1,28 @@
 # Fake News Detection System
 
-Machine Learning project that classifies news as Real or Fake using NLP and Logistic Regression.
+A Machine Learning project that detects whether news is real or fake using NLP and Logistic Regression.
 
-Dataset used:
+## Features
+- Real/Fake prediction
+- Flask web interface
+- TF-IDF vectorization
+- Logistic Regression
 
+## Technologies
+- Python
+- Flask
+- Scikit-learn
+- Pandas
+- HTML
+- CSS
+
+## Dataset
 https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset
+
+## Run
+
+pip install -r requirements.txt
+
+python model.py
+
+python app.py
