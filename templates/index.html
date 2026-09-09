@@ -5,47 +5,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Fake News Detection</title>
+    <title>Fake News Detection System</title>
 
     <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <div class="container">
+    <main class="container">
 
-        <h1>📰 Fake News Detection</h1>
+        <!-- Header -->
+        <header class="header">
 
-        <p class="subtitle">
-            Enter a news article or headline and check whether it is likely real or fake
-        </p>
+            <div class="icon">
+                📰
+            </div>
 
-        <form action="/predict" method="POST">
+            <h1>Fake News Detection</h1>
 
-            <textarea
-                name="news"
-                rows="10"
-                placeholder="Paste news text here..."
-                required>{{ news }}</textarea>
+            <p class="subtitle">
+                Analyze a news article using Machine Learning and NLP
+                to predict whether it resembles real or fake news.
+            </p>
 
-            <button type="submit">
-                Analyze News
-            </button>
+        </header>
 
-        </form>
 
+        <!-- Input Section -->
+        <section class="input-section">
+
+            <form action="/predict" method="POST">
+
+                <label for="news">
+                    News Article
+                </label>
+
+                <textarea
+                    id="news"
+                    name="news"
+                    rows="12"
+                    placeholder="Paste the news article or headline here..."
+                    required>{{ news }}</textarea>
+
+                <div class="input-info">
+                    <span>
+                        💡 For better results, enter the complete article.
+                    </span>
+                </div>
+
+                <button type="submit">
+                    Analyze News
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Prediction Result -->
         {% if prediction %}
 
-        <div class="result {{ result_type }}">
+        <section class="result-section">
 
-            <h2>{{ prediction }}</h2>
+            <div class="result {{ result_type }}">
 
-        </div>
+                <div class="result-icon">
+
+                    {% if result_type == "real" %}
+                        ✓
+                    {% elif result_type == "fake" %}
+                        !
+                    {% else %}
+                        ⚠
+                    {% endif %}
+
+                </div>
+
+                <div class="result-content">
+
+                    <p class="result-label">
+                        Model Prediction
+                    </p>
+
+                    <h2>
+                        {{ prediction }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
 
         {% endif %}
 
-    </div>
+
+        <!-- Disclaimer -->
+        <footer class="footer">
+
+            <p>
+                <strong>Note:</strong>
+                This system is an ML-based text classifier trained on a
+                labeled fake and real news dataset. It does not verify
+                claims against external sources.
+            </p>
+
+        </footer>
+
+    </main>
 
 </body>
+
 </html>
